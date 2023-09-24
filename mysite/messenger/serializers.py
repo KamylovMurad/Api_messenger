@@ -1,7 +1,7 @@
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import UserToken
+from .models import UserToken, Message
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -34,8 +34,15 @@ class ChatSerializers(serializers.ModelSerializer):
         fields = ['token', 'chat_id', ]
 
 
-class MessageSerializer(serializers.Serializer):
-    message = serializers.CharField()
+class MessageSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = ['message', ]
+        model = Message
+        fields = ['text', ]
+
+
+class AllMessagesSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Message
+        fields = ['text', 'date']

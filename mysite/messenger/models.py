@@ -4,9 +4,12 @@ from django.contrib.auth.models import User
 
 
 class UserToken(models.Model):
-    user = models.OneToOneField(User, on_delete=models.PROTECT)
-    chat_id = models.IntegerField(unique=True,  null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    chat_id = models.IntegerField(unique=True, null=True)
     token = models.UUIDField(default=uuid.uuid4, unique=True)
+
+    def __str__(self):
+        return f'Token {self.user}'
 
 
 class Message(models.Model):
@@ -14,4 +17,6 @@ class Message(models.Model):
     text = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f'Message {self.user}'
 
