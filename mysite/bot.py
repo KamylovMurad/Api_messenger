@@ -20,7 +20,6 @@ async def on_start(message: types.Message):
             'chat_id': message.from_user.id
         }
     )
-    print(response)
     data = response.json()
     await message.answer(data['data'])
 
