@@ -1,5 +1,4 @@
 from typing import List
-
 import asgiref
 from django.contrib.auth import login
 from django.contrib.auth.models import User

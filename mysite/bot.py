@@ -2,7 +2,7 @@ import logging
 import asyncio
 import requests
 from aiogram import Bot, Dispatcher, types
-from config import TG_TOKEN
+from config import TG_TOKEN, domain
 
 bot = Bot(TG_TOKEN)
 dp = Dispatcher(bot)
@@ -11,7 +11,7 @@ dp = Dispatcher(bot)
 @dp.message_handler()
 async def on_start(message: types.Message):
     token = message.text
-    api_url = 'http://127.0.0.1:8000/api/get_chat_id'
+    api_url = f'http://{domain}/api/get_chat_id'
     response = requests.post(
         api_url,
         data={
